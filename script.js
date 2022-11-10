@@ -1,6 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//these are to get random lower case, upper case, numbers and symbols and to push into the funcion
+
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -30,6 +32,7 @@ function getRandomItem(list) {
   return list[randomInt(list.length)];
 }
 
+
 //prompts and setups for generation
 
 function generatePassword() {
@@ -37,13 +40,13 @@ function generatePassword() {
     "How many characters is your password? Please choose between 8 and 128"
   );
 
-  var passLength = parseInt(userInput);
+  var passwordLength = parseInt(userInput);
 
-  if (isNaN(passLength)) {
+  if (isNaN(passwordLength)) {
     window.alert("That's not a number! Only enter a number between 8 and 128!");
     return;
   }
-  if (passLength < 8 || passLength > 128) {
+  if (passwordLength < 8 || passwordLength > 128) {
     window.alert("Please only select between 8 and 128 characters!");
     return;
   }
@@ -71,15 +74,21 @@ function generatePassword() {
     selections.push(getRandomSymbol());
   }
 
+  if (selections.length === 0) {
+    window.alert("Please make at least one selection!");
+    return;
+  };
+
   var newPassword = "";
 
-  for (var i = 0; i < passLength; i++) {
+  for (var i = 0; i < passwordLength; i++) {
     var randomList = getRandomItem(selections);
     var randomChar = getRandomItem(randomList);
     newPassword += randomChar;
   }
 
-  console.log(newPassword);
+  return newPassword;
+
 }
 
 // Write password to the #password input
