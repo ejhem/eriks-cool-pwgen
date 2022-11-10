@@ -37,13 +37,13 @@ function generatePassword() {
     "How many characters is your password? Please choose between 8 and 128"
   );
 
-  var passwordLength = parseInt(userInput);
+  var passLength = parseInt(userInput);
 
-  if (isNaN(passwordLength)) {
+  if (isNaN(passLength)) {
     window.alert("That's not a number! Only enter a number between 8 and 128!");
     return;
   }
-  if (passwordLength < 8 || passwordLength > 128) {
+  if (passLength < 8 || passLength > 128) {
     window.alert("Please only select between 8 and 128 characters!");
     return;
   }
@@ -55,29 +55,31 @@ function generatePassword() {
 
   var selections = [];
 
-  if (wantLower === true) {
+  if (wantLower) {
     selections.push(getRandomLower());
   }
 
-  if (wantUpper === true) {
+  if (wantUpper) {
     selections.push(getRandomUpper());
   }
 
-  if (wantNumbers === true) {
+  if (wantNumbers) {
     selections.push(getRandomNumber());
   }
 
-  if (wantSymbols === true) {
+  if (wantSymbols) {
     selections.push(getRandomSymbol());
   }
 
-  // var generatedPassword = 
+  var newPassword = "";
 
-  for (var i = 0; i < passwordLength; i++) {
+  for (var i = 0; i < passLength; i++) {
     var randomList = getRandomItem(selections);
     var randomChar = getRandomItem(randomList);
-    console.log(randomChar);
+    newPassword += randomChar;
   }
+
+  console.log(newPassword);
 }
 
 // Write password to the #password input
